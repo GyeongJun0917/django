@@ -1,218 +1,68 @@
 from hello.domains import Member
-from hello.models import Quiz01Calculator, Quiz02Bmi, Quiz03Grade, Quiz04GradeAuto, Quiz05Dice, Quiz06RandomGenerator, Quiz07RandomChoice, Quiz08Rps, Quiz09GetPrime, Quiz10LeapYear, Quiz11NumberGolf, Quiz12Lotto, Quiz13Bank, Quiz14Gugudan
-import random
+from hello.quiz00 import Quiz00
+from hello.quiz10 import Quiz10
+from hello.quiz20 import Quiz20
+from hello.quiz30 import Quiz30
+from hello.quiz40 import Quiz40
 if __name__ == '__main__':
+    q0 = Quiz00()
+    q1 = Quiz10()
+    q2 = Quiz20()
+    q3 = Quiz30()
+    q4 = Quiz40()
     while 1:
-        menu = input('0.Exit 1.계산기(+, -, *, /) 2. BMi계산 3.성적표 4. 성적표 자동, 5. 주사위'
-                     '6. 랜덤정수 7.803호 랜덤 8.가위바위보')
-        if menu == 0:
-            break
-        elif menu == '1':
-            calc = Quiz01Calculator(int(input('첫번째 수')), int(input('두번째 수')), input('+, -, *, /'))
-            print(('*'*30)+f'\n{calc.num1}{calc.opcode}{calc.num2}={calc.calc_res()}\n'+('*'*30))
-
-        elif menu == '2':
-           member = Member()
-           q2 = Quiz02Bmi
-           member.name = input('이름 :')
-           member.height = float(input('키 : '))
-           member.weight = float(input('몸무게 : '))
-           res = q2.getBmi(member)
-           print(f'이름:{member.name}, 키: {member.height}, 몸무게: {member.weight}, BMI상태: {res}')
-
-        elif menu == '3':
-            grade = Quiz03Grade(input('이름'), int(input('국어점수')), int(input('영어점수')), int(input('수학점수')))
-            print(('#' * 30) + '\n'
-                               f'이름: {grade.name}\n국어: {grade.kor}점\n'
-                               f'영어: {grade.eng}점\n수학: {grade.math}점\n'
-                               f'총점: {grade.total()}점\n 평균: {grade.avg()}점\n'
-                               f'합격여부: {grade.grade_pass()}\n'
-                  + ('#' * 30))
-
-        elif menu == '4':
-            q4 = Quiz04GradeAuto()
-            break
-
-        elif menu == '5':
-            print(Quiz05Dice.cast())
-
-        elif menu == '6':
-            q6Random = None
-
-        elif menu == '7':
-            print(Quiz07RandomChoice.choiceMembers())
-
-        elif menu == '8':
-            q8rps = Quiz08Rps(int(input('가위 1 바위 2 보3')))
-            print(f'플레이어: {q8rps.player} 컴퓨터: {q8rps.com()} 게임결과 : {q8rps.game()}')
-
-        elif menu == '9':
-            break
-
-        elif menu == '10':
-            q10 = Quiz10LeapYear(int(input('연도를 입력하세요')))
-            print(q10.leapYear())
-
-        elif menu == '11':
-            q11 = Quiz11NumberGolf(int(input('1~100까지 입력하세요')))
-            print(q11.game())
-
-class Quiz01Calculator(object):
-
-    def __init__(self, num1, num2, opcode):
-        self.num1 = num1
-        self.num2 = num2
-        self.opcode = opcode
-
-    def calc_res(self):
-        if self.opcode == '+':
-            return self.num1 + self.num2
-        elif self.opcode == '-':
-            return self.num1 - self.num2
-        elif self.opcode == '*':
-            return self.num1 * self.num2
-        elif self.opcode == '/':
-            return self.num1 / self.num2
-
-
-class Quiz02Bmi(object):
-    @staticmethod
-    def getBmi(member):
-        this = member
-        bmires = this.weight / (this.height * this.height)*10000
-        if bmires < 18.5:
-            return '저체중'
-        elif bmires < 23:
-            return '정상'
-        elif bmires < 25:
-            return '과체중'
-        elif bmires < 30:
-            return '경도 비만(1단계 비만)'
-        elif bmires < 35:
-            return '중도 비만(2단계 비만)'
-        else:
-            return '고도 비만'
-class Quiz03Grade(object):
-
-    def __init__(self, kor, eng, math, name):
-        self.kor = kor
-        self.eng = eng
-        self.math = math
-        self.name = name
-
-    def total(self):
-        return self.kor + self.eng + self.math
-
-    def avg(self):
-        return self.total() / 3
-
-    def grade_pass(self):
-        return '합격' if self.avg() >= 60 else '불합격'
-
-class Quiz04GradeAuto(object):
-    def __init__(self, name, kor, eng, math):
-        self.name = name
-        self.kor = kor
-        self.eng = eng
-        self.math = math
-
-    def total(self):
-        return self.kor + self.eng + self.math
-    def avg(self):
-        return self.total()/3
-    def grade_pass(self):
-        return '합격' if self.avg() >= 60 else '불합격'
-
-def myRandom(start, end):
-    return random.randint(start, end)
-
-class Quiz05Dice(object):
-    @staticmethod
-    def cast():
-        return myRandom(1, 6)
-
-class Quiz06RandomGenerator(object): # 원하는 범위의 정수에서 랜덤값 1개 추출
-    @staticmethod
-    def cast():
-        pass
-
-class Quiz07RandomChoice(object): # 803호에서 랜덤으로 1명 이름 추출
-     @staticmethod
-     def choiceMembers():
-         members = ['홍정명', '노홍주', '전종현', '정경준', '양정오',
-                        "권혜민", "서성민", "조현국", "김한슬", "김진영",
-                        '심민혜', '권솔이', '김지혜', '하진희', '최은아',
-                        '최민서', '한성수', '김윤섭', '김승현',
-                        "강 민", "최건일", "유재혁", "김아름", "장원종"]
-         return random.choice(members)
-
-
-class Quiz08Rps(object): # 1.가위 2.바위 3.보
-    def __init__(self, player):
-        self.player = player
-    def com(self):
-        return myRandom(1, 3)
-
-    def game(self):
-        p = self.player
-        c = self.com()
-
-        if p == c:
-            res = '무승부'
-        elif (p == 1 and c == 3) or (p == 2 and c == 1) or (p == 3 and c == 2):
-            res = '승리'
-        else:
-            res = '패배'
-        return res
-
-
-
-class Quiz09GetPrime(object):
-    def __init__(self, number):
-        self.number = number
-
-class Quiz10LeapYear(object):
-    def __init__(self, year):
-        self.year = year
-    def leapYear(self):
-        a = self.year
-        if a%4==0 and a%100!=0 or a%400==0:
-            return '윤년'
-        else:
-            return '평년'
-
-
-class Quiz11NumberGolf(object):
-    def __init__(self, player):
-        self.player = player
-    def com(self):
-        return myRandom(1, 100)
-
-    def game(self):
-        p = self.player
-        c = self.com()
-        while p != c:
-            if p >= 100:
-                return '숫자 다시 입력'
-            elif c > p:
-                return 'up'
-            elif c < p:
-                return 'down'
-        return '정답입니다'
-
-
-class Quiz12Lotto(object):
-    def __init__(self):
-        pass
-
-class Quiz13Bank(object): # 이름, 입금, 출금만 구현
-    def __init__(self):
-        pass
-
-class Quiz14Gugudan(object): # 책받침구구단
-    def __init__(self):
-        pass
-
-
-
-
+        menu = input('''00계산기 01Bmi 02주사위 03가위바위보 04윤년 05성적표 06멤버선택 07로또 08입출금 09구구단\n
+    10버블 11삽입 12선택 13퀵 14병합 15매직 16지그재그 17소수 18골프 19예약\n
+    20리스트 21튜플 22딕셔너리 23 24 25 26 27 28 29\n
+    30 31 32 33 34 35 36 37 38 39\n''')
+        if menu == '00': q0.quiz00calculator()
+        elif menu == '01': q0.quiz01bmi()
+        elif menu == '02': q0.quiz02dice()
+        elif menu == '03': q0.quiz03rps()
+        elif menu == '04': q0.quiz04leap()
+        elif menu == '05': q0.quiz05grade()
+        elif menu == '06': q0.quiz06memberChoice()
+        elif menu == '07': q0.quiz07lotto()
+        elif menu == '08': q0.quiz08bank()
+        elif menu == '09': q0.quiz09gugudan()
+        elif menu == '10': q1.quiz10bubble()
+        elif menu == '11': q1.quiz11insertion()
+        elif menu == '12': q1.quiz12selection()
+        elif menu == '13': q1.quiz13quick()
+        elif menu == '14': q1.quiz14merge()
+        elif menu == '15': q1.quiz15magic()
+        elif menu == '16': q1.quiz16zigzag()
+        elif menu == '17': q1.quiz17prime()
+        elif menu == '18': q1.quiz18golf()
+        elif menu == '19': q1.quiz19booking()
+        elif menu == '20': q2.quiz20list()
+        elif menu == '21': q2.quiz21tuple()
+        elif menu == '22': q2.quiz22dict()
+        elif menu == '23': q2.quiz23listcom()
+        elif menu == '24': q2.quiz24zip()
+        elif menu == '25': q2.quiz25dictcom()
+        elif menu == '26': q2.quiz26map()
+        elif menu == '27': q2.quiz27()
+        elif menu == '28': q2.quiz28()
+        elif menu == '29': q2.quiz29()
+        elif menu == '30': q3.quiz30()
+        elif menu == '31': q3.quiz31()
+        elif menu == '32': q3.quiz32()
+        elif menu == '33': q3.quiz33()
+        elif menu == '34': q3.quiz34()
+        elif menu == '35': q3.quiz35()
+        elif menu == '36': q3.quiz36()
+        elif menu == '37': q3.quiz37()
+        elif menu == '38': q3.quiz38()
+        elif menu == '39': q3.quiz39()
+        elif menu == '40': q4.quiz40()
+        elif menu == '41': q4.quiz41()
+        elif menu == '42': q4.quiz42()
+        elif menu == '43': q4.quiz43()
+        elif menu == '44': q4.quiz44()
+        elif menu == '45': q4.quiz45()
+        elif menu == '46': q4.quiz46()
+        elif menu == '47': q4.quiz47()
+        elif menu == '48': q4.quiz48()
+        elif menu == '49': q4.quiz49()
+        else: break
