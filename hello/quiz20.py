@@ -24,13 +24,12 @@ class Quiz20:
 
 
     def quiz24zip(self) -> str:
-
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
-        soup = BeautifulSoup(html_doc, 'lxml')
-        artists = soup.find_all('p', {'class':'artist'})
-        artists = [i.get_text() for i in artists]
-        print(''.json(i for i in artists))
+        soup = BeautifulSoup(html_doc, 'lxml')  # html.parser vs lxml
+        # print(soup.prettify())
+        # artist = soup.find_all(attrs={'class':'artist'})
+        print('\n'.join([i.get_text().strip() for i in soup.find_all('p', {'class': 'artist'})][0:3]))
         # print(type(artists))
         return None
         # print(soup.find_all('p', class_="artist")[0].text)
@@ -52,12 +51,11 @@ class Quiz20:
     def quiz26(self) -> str: return None
 
     def quiz27melon(self) -> str:
-        herders = {'User-Agent': 'Mozilla/5.0'}
+        headers = {'User-Agent': 'Mozilla/5.0'}
         url = 'https://www.melon.com/chart/index.htm?dayTime=2022030816'
-        req = urllib.request.Request(url, herders=herders)
+        req = urllib.request.Request(url, headers=headers)
         soup = BeautifulSoup(urlopen(req).read(), 'lxml')
-
-
+        print(''.join(i.get_text() for i in soup.find_all('div', {'class': 'ellipsis rank01'})[0:3]))
         return None
 
     def quiz28(self) -> str: return None

@@ -185,7 +185,7 @@ class Account(object):
                       f'입금액 :{deposit}만원이 입금되었습니다.\n '
                       f'잔액 :{j.money}만원\n')
                 '''
-
+            return None
     @staticmethod
     def wif(ls, account_number, money):
         for i,j in enumerate(ls):
