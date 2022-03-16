@@ -1,3 +1,6 @@
+from hello.domains import memberlist
+
+
 class Quiz40:
     def quiz40(self) -> str: return None
 
@@ -7,7 +10,8 @@ class Quiz40:
 
     def quiz43(self) -> str: return None
 
-    def quiz44(self) -> str: return None
+    def quiz44(self) -> str:
+        return None
 
     def quiz45(self) -> str: return None
 

@@ -150,10 +150,10 @@ class Quiz20:
     def quiz29_pandas_01(self) -> object:
         aa = []
         bb = []
-        columns = [chr(i) for i in range(97, 100)]  # c =  ['a', 'b', 'c']
+        columns = [chr(i) for i in range(97, 100)]
         [aa.append(i) if i % 2 == 0 else bb.append(i) for i in range(1, 7)]
-        dict = {'1': bb, '2': aa}
-        df3 = pd.DataFrame.from_dict(dict, orient='index', columns=columns)
+        d = {'1': bb, '2': aa}
+        df3 = pd.DataFrame.from_dict(d, orient='index', columns=columns)
 
         print(df3)
 
