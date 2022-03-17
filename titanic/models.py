@@ -7,10 +7,10 @@ class TitanicModel(object):
     model = Model()
     dataset = Dataset()
     def __init__(self, train_fname, test_fname):
-        self.train = self.model.new_model(train_fname)
-        self.test = self.model.new_model(test_fname)
-        ic(f'트레인 컬럼 {self.train.columns}')
-        ic(f'트레인 헤드 {self.train.head()}')
+        self.train = self.model.new_dframe(train_fname)
+        self.test = self.model.new_dframe(test_fname)
+        #ic(f'트레인 컬럼 {self.train.columns}')
+        #ic(f'트레인 헤드 {self.train.head()}')
         # id 추출
 
 
@@ -31,16 +31,16 @@ class TitanicModel(object):
         df = self.fare_ratio(df)
         return df
 
-    @statcmethod
-    def create_label(df)->object:
-        return df
+        @statcmethod
+        def create_label(df)->object:
+            return df
 
-    @statcmethod
-    def create_train(df)->object:
-        return df
+        @statcmethod
+        def create_train(df)->object:
+            return df
 
-    def drop_feature(self, df) -> object:
-        a = [i for i in []]
+        def drop_feature(self, df) -> object:
+            a = [i for i in []]
 
         self.preprocess(df)
         self.parch_garbage(df)
